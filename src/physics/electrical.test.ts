@@ -3,6 +3,7 @@ import {
   circularCrossSectionArea,
   conductorResistance,
   currentDensity,
+  driftVelocity,
   electricalPower,
   millimetersToMeters,
   ohmsLawVoltage,
@@ -20,15 +21,22 @@ describe("modelo eléctrico", () => {
 
   it("reduce R a la mitad al duplicar A", () => {
     const base = conductorResistance(rhoCopper, 2, area);
-    expect(conductorResistance(rhoCopper, 2, area * 2)).toBeCloseTo(base / 2, 12);
+    expect(conductorResistance(rhoCopper, 2, area * 2)).toBeCloseTo(
+      base / 2,
+      12,
+    );
   });
 
   it("devuelve rho0 cuando T = T0", () => {
-    expect(resistivityAtTemperature(rhoCopper, 0.00393, 20, 20)).toBe(rhoCopper);
+    expect(resistivityAtTemperature(rhoCopper, 0.00393, 20, 20)).toBe(
+      rhoCopper,
+    );
   });
 
   it("aumenta rho con T para alfa positivo", () => {
-    expect(resistivityAtTemperature(rhoCopper, 0.00393, 80, 20)).toBeGreaterThan(rhoCopper);
+    expect(
+      resistivityAtTemperature(rhoCopper, 0.00393, 80, 20),
+    ).toBeGreaterThan(rhoCopper);
   });
 
   it("duplica V al duplicar I con R constante", () => {
@@ -52,6 +60,20 @@ describe("modelo eléctrico", () => {
     expect(exampleArea).toBeCloseTo(8.17e-7, 9);
     // Sears redondea el área y J a tres cifras significativas.
     expect(currentDensity(1.67, exampleArea)).toBeCloseTo(2.04e6, -4);
+    expect(driftVelocity(1.67, exampleArea, 8.5e28)).toBeCloseTo(1.5e-4, 5);
+  });
+
+  it("calcula v_d = I/(n|q|A) y conserva los casos límite", () => {
+    const base = driftVelocity(2, area, 8.5e28);
+    expect(driftVelocity(4, area, 8.5e28)).toBeCloseTo(base * 2, 15);
+    expect(driftVelocity(2, area * 2, 8.5e28)).toBeCloseTo(base / 2, 15);
+    expect(driftVelocity(2, area, 17e28)).toBeCloseTo(base / 2, 15);
+    expect(driftVelocity(0, area, 8.5e28)).toBe(0);
+  });
+
+  it("rechaza parámetros microscópicos inválidos", () => {
+    expect(() => driftVelocity(1, area, 0)).toThrow(RangeError);
+    expect(() => driftVelocity(1, area, 8.5e28, -1.6e-19)).toThrow(RangeError);
   });
 
   it("rechaza geometrías inválidas", () => {

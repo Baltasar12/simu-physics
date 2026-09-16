@@ -14,7 +14,29 @@ El material relaciona corriente y velocidad de deriva con:
 
 `I = n|q|v_d A`
 
-`n` es la cantidad de portadores por unidad de volumen [m⁻³], `|q|` la magnitud de la carga de cada portador [C], `v_d` la rapidez de deriva [m/s] y `A` el área transversal [m²]. Esta relación se explica, pero `n` y `v_d` no son controles en la primera etapa.
+Despejando la rapidez de deriva:
+
+`v_d = I/(n|q|A) = J/(n|q|)`
+
+`n` es la cantidad de portadores por unidad de volumen [m⁻³], `|q|` la magnitud de la carga de cada portador [C], `v_d` la rapidez media de deriva [m/s] y `A` el área transversal [m²]. La interfaz permite variar `n` entre `10²⁷` y `10³⁰ m⁻³`; comienza en `8,5 × 10²⁸ m⁻³`, el valor para cobre usado por Sears. Se toma `|q| = 1,60 × 10⁻¹⁹ C`, porque los portadores del modelo metálico son electrones.
+
+### De dónde sale la ecuación
+
+Durante un intervalo `dt`, cada portador avanza en promedio `v_d dt`. Los portadores que atraviesan una sección `A` estaban dentro de un cilindro de volumen `A v_d dt`. Si hay `n` portadores por unidad de volumen, en ese cilindro hay `n A v_d dt` portadores y la magnitud de la carga transportada es:
+
+`dQ = n|q|A v_d dt`
+
+Al dividir por `dt`, resulta `I = dQ/dt = n|q|A v_d`. La fórmula usa magnitudes. En un metal, la velocidad vectorial de los electrones apunta en sentido opuesto a la corriente convencional.
+
+### Ejemplo 25.1 de Sears
+
+Para un alambre de cobre con `d = 1,02 mm`, `I = 1,67 A` y `n = 8,5 × 10²⁸ m⁻³`:
+
+1. `A = π(d/2)² = 8,17 × 10⁻⁷ m²`.
+2. `J = I/A = 2,04 × 10⁶ A/m²`.
+3. `v_d = J/(n|q|) ≈ 1,5 × 10⁻⁴ m/s = 0,15 mm/s`.
+
+El resultado muestra por qué la animación necesita amplificación visual: la deriva media es muy lenta aunque la respuesta eléctrica del circuito se establezca rápidamente. Fuente: **Tema 5**, páginas 3 y 5; **Sears 25.1**, ecuaciones 25.2–25.4 y ejemplo 25.1, páginas 3–5 del PDF.
 
 ## 2. Densidad de corriente
 
@@ -88,6 +110,14 @@ La potencia `P` se mide en watt (W) y es la rapidez con la que se transfiere o d
 - Dilatación térmica despreciada.
 - Sin contactos, resistencia interna de fuente ni circuito externo.
 - Los electrones animados no resuelven colisiones ni reproducen su rapidez real.
+- La cifra de `v_d` sí se calcula en SI; la animación sólo amplifica su velocidad y conserva cualitativamente cómo cambia con `I`, `A` y `n`.
+- `n` es independiente del selector de material: el material de la cátedra sólo proporciona un valor numérico de `n` para cobre. Para otros materiales, el usuario debe seleccionar una densidad apropiada si desea un cálculo material específico.
 - No se usan métodos numéricos de campo ni una simulación microscópica.
 
 Es una simulación educativa del modelo de clase: muestra con claridad las dependencias entre variables, no todos los detalles de un conductor real.
+
+## Segunda entrega: magnetismo
+
+La explicación de campo, fuerza, producto vectorial, trabajo nulo, derivación del radio, movimiento circular y casos especiales está en [MAGNETISMO_FISICA.md](MAGNETISMO_FISICA.md). Incluye referencias verificadas a las diapositivas Semana 1A y al capítulo 27 de Sears.
+
+Para ensayar la exposición y la demostración de cinco minutos, usar [GUIA_EXPOSICION_MAGNETISMO.md](GUIA_EXPOSICION_MAGNETISMO.md).

@@ -15,15 +15,15 @@ const modules = [
     title: "Campo y Fuerza Magnética",
     description: "Exploración vectorial de la fuerza sobre cargas en movimiento y regla de la mano derecha.",
     href: "/campo-magnetico",
-    status: "Próximamente",
+    status: "Disponible",
     Icon: Atom,
   },
   {
     number: "03",
-    title: "Movimiento de Partículas Cargadas",
+    title: "Movimiento Circular de Partículas Cargadas",
     description: "Trayectorias circulares de partículas bajo la acción de un campo magnético uniforme.",
     href: "/movimiento-circular",
-    status: "Próximamente",
+    status: "Disponible",
     Icon: CircleDotDashed,
   },
 ];
@@ -58,7 +58,7 @@ export default function Home() {
               <h3>{title}</h3>
               <p>{description}</p>
               <div className="module-status">
-                <span className={index === 0 ? "status-dot" : "status-ring"} />
+                <span className="status-dot" />
                 {status}
                 <ArrowRight aria-hidden="true" size={16} />
               </div>

@@ -21,8 +21,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </span>
           </Link>
           <nav aria-label="Navegación principal">
-            <Link href="/resistencia">Simulador</Link>
-            <Link href="/campo-magnetico">Próximas etapas</Link>
+            <Link href="/">Inicio</Link>
+            <Link href="/resistencia">Resistencia</Link>
+            <Link href="/campo-magnetico">Campo y fuerza</Link>
+            <Link href="/movimiento-circular">Movimiento circular</Link>
           </nav>
         </header>
         {children}

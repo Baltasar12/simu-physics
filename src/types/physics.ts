@@ -1,4 +1,10 @@
-export type ControlVariable = "material" | "length" | "diameter" | "current" | "temperature";
+export type ControlVariable =
+  | "material"
+  | "length"
+  | "diameter"
+  | "current"
+  | "temperature"
+  | "carrierDensity";
 
 export interface Material {
   id: string;
@@ -18,6 +24,7 @@ export interface ElectricalInputs {
   lengthMeters: number;
   diameterMeters: number;
   currentAmperes: number;
+  carrierDensityPerCubicMeter: number;
 }
 
 export interface ElectricalResults {
@@ -27,4 +34,5 @@ export interface ElectricalResults {
   voltageVolts: number;
   powerWatts: number;
   currentDensityAmperesPerSquareMeter: number;
+  driftVelocityMetersPerSecond: number;
 }
