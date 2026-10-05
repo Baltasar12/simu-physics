@@ -47,7 +47,7 @@ Helmholtz inicia con R=D=0,20 m, N1=N2=100 e I1=I2=1 A. Antihorario visto desde 
 
 `npm run build:static` genera `out/` mediante `STATIC_EXPORT=1`, sin modificar el build web normal. El resultado debe servirse por HTTP o un protocolo local de Electron; abrir el HTML con `file://` no reproduce las rutas de Next.js. No requiere APIs, fuentes, texturas o modelos externos durante su uso.
 
-La rama `feature/tp4-helmholtz` parte de `main`. Los cambios existentes de Electron permanecen separados en `feature/desktop-offline`. La validación usa una copia temporal del cargador de esa rama contra el nuevo `out/`, sin hacer merge ni regenerar el ejecutable. Consultar [el informe TP4](docs/INFORME_TP4.md) para pruebas e integración posterior.
+La implementación de `feature/tp4-helmholtz` quedó registrada e integrada en `main` para la web y en `offline/tp4` para la entrega Windows. `main` conserva únicamente la aplicación compartida; Electron, sus dependencias, scripts, protocolo y configuración portable pertenecen a `offline/tp4`. Ver [el cierre de ramas y entrega](docs/INFORME_ENTREGA_TP4.md).
 
 ## Estructura
 
@@ -70,12 +70,14 @@ docs/             # teoría, exposición, arquitectura y validación
 - [Guía teórica TP4, manual, capturas y aplicaciones](docs/TP4_BOBINAS_HELMHOLTZ.md).
 - [Guía de exposición TP4 y demo de 5-7 minutos](docs/GUIA_EXPOSICION_TP4.md).
 - [Informe de implementación y validación TP4](docs/INFORME_TP4.md).
+- [Cierre de ramas, portable y paquete TP4](docs/INFORME_ENTREGA_TP4.md).
+- [Borrador de correo al profesor](docs/BORRADOR_EMAIL_TP4.md).
 - [Arquitectura](docs/ARQUITECTURA.md).
 - [Informe de implementación y validación](docs/INFORME_ETAPA_2.md).
 - [Roadmap](docs/ROADMAP.md).
 
 ## Estado y publicación
 
-Los cuatro módulos están implementados. Los PDF se conservan intactos en la raíz del checkout original como referencias locales y no se copian a `public/` ni al bundle. No se realizó commit, push, merge ni deploy en esta entrega.
+Los cuatro módulos están implementados. Los PDF se conservan intactos en la raíz del checkout original como referencias locales y no se copian a `public/` ni al bundle. Se hicieron commits e integraciones locales autorizadas. No se realizó push, deploy ni publicación externa.
 
-El proyecto puede desplegarse posteriormente en Vercel cuando se solicite. No requiere backend, base de datos ni variables de entorno; se instala con npm y se compila con `npm run build`.
+Los despliegues de producción observados de Vercel provienen de `main`, con dominio verificado `https://simu-physics.vercel.app`; el ajuste de rama de producción del panel queda pendiente de confirmación. La URL pública conserva el despliegue anterior hasta autorizar publicación. No requiere backend, base de datos ni variables de entorno; se instala con npm y se compila con `npm run build`.

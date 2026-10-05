@@ -20,7 +20,7 @@ Ruta `/bobinas-helmholtz`, dos bobinas 3D, R/D/N1/N2/I1/I2 y sentidos independie
 
 Validación: 68 tests aprobados (19 nuevos), lint, build web, exportación estática, navegación de los laboratorios anteriores y prueba aislada offline con el protocolo de Electron. PDF originales intactos. Guía teórica con siete capturas y cuatro aplicaciones; guion de exposición con demo de seis minutos. Ver [INFORME_TP4.md](INFORME_TP4.md), [TP4_BOBINAS_HELMHOLTZ.md](TP4_BOBINAS_HELMHOLTZ.md) y [GUIA_EXPOSICION_TP4.md](GUIA_EXPOSICION_TP4.md).
 
-Desarrollo separado en `feature/tp4-helmholtz` desde `main`. La incorporación a `feature/desktop-offline` y generación de un nuevo ejecutable se harán después de integrar las ramas; el portable anterior permanece sin cambios. No se hizo commit, push, merge ni deploy.
+Desarrollo compartido registrado en `feature/tp4-helmholtz` e integrado en `main` para Vercel y `offline/tp4` para Windows. El EXE con cuatro laboratorios se validó con transporte HTTP deshabilitado para la aplicación. Carpeta y ZIP de entrega preparados, con guía Markdown y capturas; conversión PDF pendiente por falta de un flujo confiable en el repositorio. Ver [el informe final](INFORME_ENTREGA_TP4.md). No se hizo push, deploy, upload ni envío de correo.
 
 ## Extensiones posteriores
 
