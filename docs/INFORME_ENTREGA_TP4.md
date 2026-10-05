@@ -1,8 +1,12 @@
-# Cierre de ramas y entrega — TP4
+# Cierre final de ramas y entrega - TP4
 
 Baltasar Barbaglia · Ingeniería Informática, UNSTA · Física II 2026.
 
 Verificado el 05/10/2026. Consigna: entrega 07/10/2026. Este informe actualiza el estado histórico de [INFORME_TP4.md](INFORME_TP4.md).
+
+**Estado final:** guía PDF terminada y revisada; paquete EXE + PDF + README y ZIP final comprobados. Web y portable contienen cuatro laboratorios. Push, deploy, subida y envío de correo siguen pendientes de autorización.
+
+Antes de este cierre se comprobaron `git worktree list`, `git branch -a`, `git status` y `git log --oneline --decorate --graph --all`: `main` estaba en `8977d59` y `offline/tp4` en `e3ba24c`, ambos limpios, coherentes con este informe. Los commits `1de9fb5`, `172fffc` y `0b83d07` existen. El EXE conservaba el SHA-256 registrado. Las modificaciones de este cierre se limitan a documentación y archivos de entrega.
 
 ## 1. Mapa inicial comprobado antes de integrar
 
@@ -24,7 +28,9 @@ Dominio de producción asociado y verificado: **https://simu-physics.vercel.app*
 
 `main` incorporó TP4 por fast-forward. Tiene Inicio y `/resistencia`, `/campo-magnetico`, `/movimiento-circular`, `/bobinas-helmholtz`. No incorpora Electron, electron-builder, scripts desktop, `DESKTOP_EXPORT`, protocolo app ni configuración del portable. El script `build:static` sigue siendo una exportación general opcional; el build web normal no activa `output:"export"`.
 
-La URL pública todavía contiene el despliegue anterior. La nueva versión de cuatro laboratorios está validada **localmente**, pendiente de push/publicación autorizados. El correo conserva un placeholder hasta comprobar TP4 en producción.
+La URL pública todavía contiene el despliegue anterior. La nueva versión de cuatro laboratorios está validada **localmente**, pendiente de push/publicación autorizados. El correo ya incluye la URL real, pero debe enviarse después de verificar TP4 en producción.
+
+Consulta final del conector Vercel, 05/10/2026: último deployment de producción `dpl_37kEPefFwiFYTShkFvBiVQnhL4xD`, READY, referencia `main`, commit `e9683018561e177f73fa1e94967250078950d4bc`. El deployment anterior también procede de `main`. El ajuste Production Branch no fue expuesto por el conector: **confirmación manual pendiente** en Settings > Git. No se cambió configuración ni se solicitó un deployment.
 
 ## 3. Registro e integración
 
@@ -58,6 +64,8 @@ La configuración offline centraliza `isStaticBuild = STATIC_EXPORT === "1" || D
 | `offline/tp4` después de integrar | 68 tests, lint, build web, build estático y build desktop aprobados. |
 | Portable real | `npm run dist:portable` completó Electron 44.4.5/electron-builder 26.15.3 para Windows x64. EXE real ejecutado y comprobado mediante CDP. |
 
+Cierre final sobre `main`, 05/10/2026: se repitieron `npm test` (68/68, tres archivos), `npm run lint` y `npm run build`, todos aprobados. El build enumera las cinco rutas requeridas. Se comprobó además HTTP 200 en `/`, `/resistencia`, `/campo-magnetico`, `/movimiento-circular` y `/bobinas-helmholtz` sobre `next start` local, puerto 3003. `main` no declara Electron ni `build:desktop` y no tiene archivos rastreados en `electron/`.
+
 Navegador online: Canvas WebGL, worker, matriz/nube, OrbitControls, restablecimiento, arrastre real de TransformControls, sonda numérica fuera del eje, gráfico, presets, D/R, singularidad y navegación de los cuatro laboratorios. Sin errores de consola/página ni peticiones remotas; responsive 390×844 sin desbordamiento.
 
 Portable: Inicio y cuatro laboratorios cargaron desde `app://laboratorio`; resistencia cambió resultados al variar longitud; fuerza respondió al anular B; movimiento circular reanudó y pausó; Helmholtz tuvo contexto WebGL, un worker, matriz de 1331 posiciones en resolución alta, nube y gráfica. El arrastre real modificó la posición de sonda, la comparación axial tuvo error relativo ≈1.61×10⁻¹⁵, duplicar ambas I duplicó B y Anti canceló el centro. Cámara y sonda produjeron cero nuevos trabajos de mapa.
@@ -87,34 +95,61 @@ Después de validar se preparó:
 ```text
 E:\CODIGO\SimuladorFisica\entrega\TP4-Baltasar-Barbaglia\
   Laboratorio-Electromagnetismo-Portable.exe
-  TP4_Bobinas_Helmholtz_Baltasar_Barbaglia.md
+  TP4_Bobinas_Helmholtz_Baltasar_Barbaglia.pdf
   README_ENTREGA.txt
-  assets\tp4\                         (7 capturas necesarias para la guía)
 ```
 
 El EXE copiado tiene el mismo hash que el probado. El ZIP agrupa esa carpeta para entregar mediante un único enlace:
 
 ```text
 E:\CODIGO\SimuladorFisica\entrega\TP4-Baltasar-Barbaglia.zip
-101350206 bytes = 101.350206 MB = 96.655088 MiB
-SHA-256: 6040B2DADBEAF16081200D2FCC0D6D000F6DC04E3C2DB829BCCE340DE37D4C8E
+101420443 bytes = 101.420443 MB = 96.722072 MiB
+SHA-256: 437654A197D0F22B36D6687CF4E73F3D8CAC521CB2B98DBE5D6EF30D8DF49C87
 ```
 
-El ZIP es mayor que el EXE porque incluye guía y capturas; la compresión no reduce significativamente un portable ya comprimido. No se confirmó el límite del correo de UNSTA. Se propone descarga por enlace por su tamaño, conservando toda la funcionalidad. No se subió ningún archivo a almacenamiento ni se creó una GitHub Release.
+El ZIP se regeneró y se abrió para verificar sus tres entradas, longitudes, CRC y SHA-256 de cada archivo. El EXE leído **desde el ZIP** tiene exactamente el hash del portable validado. No se reconstruyó ni modificó el ejecutable.
+
+Para el profesor se eligieron solamente EXE, PDF y README. El Markdown y las capturas fuente permanecen en `docs/` y Git; la copia anterior del paquete se conservó en `tmp/pdfs/material-entrega-original/`, fuera del ZIP. El PDF incorpora las siete imágenes y no necesita esa carpeta.
+
+**Subida preparada:** archivo `E:\CODIGO\SimuladorFisica\entrega\TP4-Baltasar-Barbaglia.zip`, nombre `TP4-Baltasar-Barbaglia.zip`, destino propuesto Google Drive. Después de autorizar la subida, obtener un enlace con permiso de descarga para el profesor y comprobarlo desde su condición de acceso. Sustituir `[ENLACE DE DESCARGA]` en el correo. El ZIP se entrega por enlace; el PDF de menos de 1 MB se adjunta directamente. No se subió ningún archivo ni se creó una GitHub Release.
 
 ## 6. Guía y correo
 
 La guía fuente [TP4_BOBINAS_HELMHOLTZ.md](TP4_BOBINAS_HELMHOLTZ.md) contiene Baltasar Barbaglia, UNSTA, carrera, Física II 2026, TP4, fundamentos, deducciones, manual, código, siete capturas, cuatro aplicaciones y bibliografía. Se revisó también [GUIA_EXPOSICION_TP4.md](GUIA_EXPOSICION_TP4.md).
 
-**Conversión a PDF pendiente:** no hay un pipeline confiable configurado en el repositorio para convertir Markdown y ecuaciones LaTeX conservando presentación. Se comprobaron las herramientas disponibles; no se instalaron conversores arbitrarios. La entrega incluye la fuente Markdown y sus capturas. Antes de enviar, producir y revisar `TP4_Bobinas_Helmholtz_Baltasar_Barbaglia.pdf` con una herramienta apropiada y actualizar el paquete si corresponde.
+**PDF final:**
 
-El [borrador de correo](BORRADOR_EMAIL_TP4.md) incluye destinatario `nestor.leal@unsta.edu.ar`, asunto, cuerpo formal, placeholders para descarga y versión web, adjuntos y pasos previos. **No se envió.**
+```text
+E:\CODIGO\SimuladorFisica\entrega\TP4-Baltasar-Barbaglia\TP4_Bobinas_Helmholtz_Baltasar_Barbaglia.pdf
+18 páginas A4
+922077 bytes = 0.922077 MB = 0.879361 MiB
+SHA-256: 41457263357D9848B3B554B6ADD234D6E90F009F316469D919D25FC6A58051A1
+```
+
+Se investigó el entorno antes de convertir. Se utilizaron Node, marked y Playwright del runtime existente, Chrome 154 instalado y Poppler/Python disponibles. No había Pandoc ni un motor TeX instalado y no se instalaron nuevas dependencias del proyecto. Se generó HTML de entrega con estilos de impresión y MathJax 3.2.2 (componente TeX/SVG descargado solo para la conversión). Las doce ecuaciones se imprimieron como vectores; las siete capturas originales se incorporaron al PDF. El resultado no usa JavaScript ni requiere Internet, MathJax o los archivos fuente para abrirse.
+
+Se renderizaron **las 18 páginas** con Poppler a PNG y se inspeccionaron visualmente una por una: portada, títulos, márgenes, doce ecuaciones, letras griegas, subíndices/superíndices, tablas, capturas, bibliografía y numeración. Sin páginas vacías, caracteres faltantes, imágenes ausentes ni texto cortado. Las tablas largas repiten el encabezado al continuar; algunas páginas tienen espacio libre por los cambios de sección. La comprobación de extracción encontró los datos de identidad y secciones requeridos, siete imágenes y once enlaces; no reemplaza la revisión visual.
+
+Se aclaró el paso de apertura del portable en el manual y que Bx se dibuja con línea discontinua; no se modificó ninguna ecuación ni simulación. Los tres PDF originales de la materia se conservaron.
+
+El [correo final preparado](BORRADOR_EMAIL_TP4.md) incluye destinatario `nestor.leal@unsta.edu.ar`, asunto, cuerpo formal con los cuatro módulos, URL real `https://simu-physics.vercel.app`, placeholder único `[ENLACE DE DESCARGA]` y el PDF como adjunto. **No se envió.**
 
 ## 7. Avisos de dependencias
 
-`npm audit` informó ocho avisos: siete altos y uno crítico. Los paquetes señalados fueron Next, eslint-config-next y sus herramientas transitivas de glob, además de http-cache-semantics/brace-expansion. No se aplicó `npm audit fix --force`, cuya propuesta para ESLint cambia de versión mayor y resulta incompatible con la configuración actual.
+Versiones instaladas comprobadas en este cierre: **Next 16.3.4**, **ESLint 9.39.5**; en `offline/tp4`, **Electron 44.4.5** y **electron-builder 26.15.3**. No se cambiaron manifests ni lockfiles.
 
-El crítico [GHSA-vcvr-r3jv-pc5j](https://github.com/advisories/GHSA-vcvr-r3jv-pc5j) corresponde a la implementación Node de `next/og ImageResponse` con valores de atacante en SVG; el aviso señala corrección en 16.3.6. La búsqueda de `next/og` e `ImageResponse` en `src/` no encontró uso: por esa evidencia, la vía descrita no está presente en este proyecto. El portable sirve estáticos y no incorpora un servidor Next. Los avisos de paquetes quedan registrados para una actualización controlada antes de futuras publicaciones, sin alterar el modelo físico validado. Consulta del aviso primario: 05/10/2026.
+`npm audit --json`, consulta 05/10/2026:
+
+| Rama | Total | Altos | Críticos | Paquetes señalados |
+| --- | --- | --- | --- | --- |
+| `main` | 7 | 6 | 1 | `next`, `@next/eslint-plugin-next`, `eslint-config-next`, `brace-expansion`, `braces`, `fast-glob`, `micromatch`. |
+| `offline/tp4` | 8 | 7 | 1 | Los anteriores más `http-cache-semantics`. |
+
+Los totales corresponden a paquetes afectados informados por npm, no a siete/ocho fallos independientes de la aplicación. Los avisos no críticos se ubican en herramientas de lint/glob y, en desktop, caché HTTP de herramientas. No se aplicó `npm audit fix --force`, cuya propuesta para `eslint-config-next` cambia de serie mayor a 14.2.35; tampoco se introdujo una actualización mayor de ESLint.
+
+El crítico [GHSA-vcvr-r3jv-pc5j](https://github.com/advisories/GHSA-vcvr-r3jv-pc5j) corresponde a la implementación Node de `next/og ImageResponse` con valores de atacante en SVG; afecta 16.2.0 a 16.3.5 y se corrige en 16.3.6. La búsqueda actual de `next/og` e `ImageResponse` en `src/` no encontró uso: por esa evidencia y el alcance del aviso, la vía descrita no está presente en este proyecto. El portable sirve estáticos y no incorpora un servidor Next. Consulta del aviso primario: 05/10/2026.
+
+**Decisión antes de entregar: conservar 16.3.4 y las dependencias validadas.** El patch 16.3.6 está dentro de la misma serie y sería un cambio acotado, pero no se presume ausencia de regresiones y aquí no se utiliza la función afectada. No se retrasa el cierre ni se reemplaza el EXE por esa actualización. Una actualización posterior debe partir de un respaldo Git y repetir tests, lint, build web, build estático y build desktop; cualquier regresión exige revertir. Los avisos continúan registrados y no se afirma que el audit quede limpio.
 
 ## 8. Estado Git y pendientes
 
@@ -127,12 +162,14 @@ Los commits de documentación posteriores no cambian el código validado ni el E
 
 Se repitieron los SHA-256 de los tres PDF originales y coinciden con los del informe inicial: consigna `26ABEFD0…55D793`, clase `262E7F80…E36B2A4`, Sears `48BACACA…53EBE`. No ingresaron en ningún commit ni paquete. Se comprobaron estados finales sin cambios pendientes de código y `git diff --check`.
 
+El commit que debe publicarse es el **HEAD final de `main`**, incluyendo los commits de TP4 y documentación de entrega. Resolverlo con `git rev-parse main` al autorizar el push; el código físico sigue siendo el registrado en `1de9fb5`. La rama `offline/tp4` tiene su commit local de documentación final y conserva el código del EXE construido desde `0b83d07`. No se agregaron binarios a Git.
+
 Pendientes antes de enviar/publicar:
 
-1. Convertir y revisar la guía PDF; incorporar la versión final al paquete.
-2. Elegir almacenamiento, autorizar la subida y obtener un enlace descargable para el profesor.
-3. Confirmar el ajuste Production Branch de Vercel, autorizar push/publicación y verificar TP4 en el dominio antes de completar el enlace del mail.
-4. Revisar actualización de dependencias según los avisos registrados.
-5. Completar placeholders, verificar adjuntos/enlaces y enviar el correo únicamente con autorización explícita.
+- [ ] Autorizar push de `main`.
+- [ ] Verificar Production Branch en el panel y los cuatro laboratorios en Vercel después de publicar.
+- [ ] Autorizar y subir el ZIP a Google Drive, comprobar la descarga.
+- [ ] Colocar el enlace en el correo y adjuntar el PDF final.
+- [ ] Autorizar y enviar el correo.
 
 Se hicieron commits y merges **locales autorizados por la estrategia final**. No se hizo push, deploy, upload, Release ni envío de correo.
