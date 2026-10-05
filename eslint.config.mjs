@@ -5,5 +5,9 @@ import nextTypeScript from "eslint-config-next/typescript";
 export default defineConfig([
   ...nextVitals,
   ...nextTypeScript,
-  globalIgnores([".next/**", "coverage/**", "tmp/**"]),
+  globalIgnores([".next/**", "out/**", "dist/**", "coverage/**", "tmp/**"]),
+  {
+    files: ["electron/**/*.cjs"],
+    rules: { "@typescript-eslint/no-require-imports": "off" },
+  },
 ]);

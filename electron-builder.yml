@@ -1,0 +1,20 @@
+appId: edu.laboratorio.electromagnetismo
+productName: Laboratorio Virtual de Electromagnetismo
+directories:
+  app: electron
+  output: dist
+files:
+  - package.json
+  - main.cjs
+extraResources:
+  - from: out
+    to: web
+    filter:
+      - "**/*"
+asar: true
+beforeBuild: ./electron/skip-dependencies.cjs
+win:
+  icon: electron/icon.ico
+  target: portable
+portable:
+  artifactName: Laboratorio-Electromagnetismo-Portable.${ext}

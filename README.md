@@ -8,7 +8,7 @@ Next.js 16 con App Router, React 19, TypeScript estricto, Tailwind CSS 4, SVG, R
 
 ## Requisitos e instalación
 
-Node.js 20.9 o posterior y npm.
+Node.js 20.9 o posterior y npm para la web. Para construir la versión desktop con Electron 44 se requiere Node.js 22.12 o posterior.
 
 ```bash
 npm install
@@ -26,6 +26,17 @@ npm run build
 ```
 
 Los tests verifican las funciones físicas y las propiedades geométricas de la solución analítica. Las pruebas de navegador realizadas para esta entrega están registradas en el informe.
+
+## Aplicación de escritorio offline
+
+La versión Windows reutiliza las mismas páginas, componentes y modelos físicos. Para abrir una vista local con Electron o generar el ejecutable portable:
+
+```bash
+npm run dev:desktop
+npm run dist:portable
+```
+
+El segundo comando genera `dist/Laboratorio-Electromagnetismo-Portable.exe` para Windows x64. El build web habitual continúa siendo `npm run build`. La compilación desktop exporta archivos estáticos a `out/` y Electron los carga desde un protocolo local; el ejecutable no consulta Vercel durante su uso. Consultá [la guía de escritorio](docs/DESKTOP_OFFLINE.md) para requisitos, arquitectura, pruebas y limitaciones.
 
 ## Módulos
 
