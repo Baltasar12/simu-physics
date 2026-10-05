@@ -84,3 +84,19 @@ Cada vuelta visual dura 6 s y equivale a T segundos físicos; el código pasa es
 ### Reutilización y preservación
 
 Se reutilizan el App Router, navegación global, fuentes, tarjetas, estilos de controles, layout responsive, notación científica, biblioteca de iconos, Recharts y Vitest. No se extraen ni modifican innecesariamente los controles eléctricos, cuyas unidades y supuestos son distintos. `electrical.ts`, sus tests, `ElectricalLab` y la ruta `/resistencia` conservan su implementación física.
+
+## TP4: fuentes del campo y escena 3D
+
+La ruta `/bobinas-helmholtz` es una página servidor que incluye `HelmholtzLab`. La física sigue en funciones puras (`physics/helmholtz.ts`), usando `Vector3` del contrato magnético existente, μ0 de `lib/constants.ts` y presets/límites de `data/helmholtz.ts`. No se acopla al motor gráfico.
+
+Biot-Savart integra por punto medio la curva circular en YZ, con centros ±D/2 sobre X. El mapa y nube usan 128 segmentos por bobina; la sonda usa 256. La suma mantiene tres componentes. El gráfico y el intervalo central usan la ecuación analítica axial. La distancia al círculo continuo excluye la singularidad del filamento, sin depender de dónde caen los puntos de integración.
+
+`helmholtz.worker.ts` calcula el muestreo fuera del hilo principal y conserva la región si solo cambia la calidad visual. `useHelmholtzMap` mantiene una tarea en vuelo y el último pedido pendiente; solo acepta resultados vigentes, conserva juntos escena/resultados de la misma configuración y termina el worker al desmontar. Una rotación de cámara o cambio de posición de sonda no manda otro trabajo.
+
+`HelmholtzScene` se carga diferidamente con `next/dynamic`, `ssr:false` dentro del límite cliente. El resto conserva prerenderizado. Three.js dibuja bobinas de geometría limitada, dos `InstancedMesh` para todas las flechas, un buffer para la nube y sprites con etiquetas creadas localmente. Fiber usa render bajo demanda; Drei ofrece OrbitControls y TransformControls. Al arrastrar la sonda, Drei desactiva los controles orbitales predeterminados. Las texturas se liberan y Fiber gestiona geometrías/materiales al desmontar.
+
+Controles, sonda, gráfico y teoría permanecen en archivos independientes. Los números usan SI y los formatos existentes; la conversión T→µT se centraliza. `HelmholtzChart` siempre muestra |B| y permite añadir Bx firmado, marca bobinas/sonda y exporta CSV. Los inputs numéricos son la alternativa accesible al gizmo 3D.
+
+La región usa ε=abs(|B(p)|−|B(0)|)/|B(0)|<0,01, muestreada en 21³ centros de celdas dentro de ±0,6R. Se distingue del intervalo axial conectado al origen y de una frontera continua exacta. Una referencia casi nula desactiva métricas relativas y nube. La detección de D=R requiere además bobinas iguales, corrientes iguales y paralelas no nulas.
+
+El build web mantiene su configuración normal. `npm run build:static` activa `STATIC_EXPORT=1` mediante un script Node portable; exporta recursos y worker locales a `out/`. La rama `main` contiene únicamente la aplicación compartida. `offline/tp4` añade Electron y permite también `DESKTOP_EXPORT=1`: ambos indicadores habilitan `output:"export"`, con scripts separados según intención. El cargador sirve HTML, assets y worker desde `app://laboratorio`; `dist:portable` empaqueta esos recursos sin dependencias del proyecto Next en el ASAR. La física y componentes son los mismos en ambos builds. El informe inicial está en [INFORME_TP4.md](INFORME_TP4.md); la consolidación se registra en el informe final de entrega.

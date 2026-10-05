@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es">
+    <html lang="es" data-scroll-behavior="smooth">
       <body>
         <header className="site-header">
           <Link className="brand" href="/" aria-label="Ir al inicio">
@@ -25,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <Link href="/resistencia">Resistencia</Link>
             <Link href="/campo-magnetico">Campo y fuerza</Link>
             <Link href="/movimiento-circular">Movimiento circular</Link>
+            <Link href="/bobinas-helmholtz">Bobinas de Helmholtz</Link>
           </nav>
         </header>
         {children}

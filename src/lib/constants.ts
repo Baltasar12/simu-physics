@@ -15,3 +15,6 @@ export const CONTROL_LIMITS = {
 export const ELEMENTARY_CHARGE_COULOMBS = 1.6e-19;
 
 export const GRAPH_POINT_COUNT = 64;
+
+/** Valor pedagógico de los PDF, Sears (28.3); medio vacío/aire. */
+export const VACUUM_PERMEABILITY = 4 * Math.PI * 1e-7;

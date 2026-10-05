@@ -2,7 +2,7 @@
 
 ## Qué hace cada herramienta
 
-React implementa los controles, resultados, gráficos y simulaciones SVG. Los modelos de `src/physics/` son los mismos en web y escritorio. Next.js organiza las cuatro rutas y construye sus HTML, CSS, JavaScript y datos de navegación. Electron aporta una ventana de Windows y un navegador Chromium incluido en la aplicación. electron-builder reúne Electron y los archivos exportados en un EXE portable.
+React implementa los controles, resultados, gráficos y simulaciones SVG/3D. Los modelos de `src/physics/` son los mismos en web y escritorio. Next.js organiza Inicio y los cuatro laboratorios, y construye sus HTML, CSS, JavaScript, worker y datos de navegación. Electron aporta una ventana de Windows y un navegador Chromium incluido en la aplicación. electron-builder reúne Electron y los archivos exportados en un EXE portable.
 
 No hay una segunda aplicación React ni un servidor Next.js dentro del EXE. La versión desktop no abre una URL de Vercel.
 
@@ -20,7 +20,7 @@ npm run dev:desktop
 npm run dist:portable
 ```
 
-`npm run build` conserva el build web para Vercel. `build:desktop` activa `DESKTOP_EXPORT=1` únicamente para ese proceso y hace que Next.js use `output: "export"`. `dev:desktop` reconstruye la exportación y la abre en Electron; sirve como vista previa local y no ofrece recarga automática al editar. `dist:portable` ejecuta el build desktop y el empaquetado completo en orden. La salida final es `dist/Laboratorio-Electromagnetismo-Portable.exe`.
+`npm run build` conserva el build web normal. `build:desktop` activa `DESKTOP_EXPORT=1` únicamente para ese proceso y hace que Next.js use `output: "export"`. `build:static` activa `STATIC_EXPORT=1` para una exportación general; cualquiera de los dos indicadores habilita internamente la misma opción. `dev:desktop` reconstruye la exportación y la abre en Electron; sirve como vista previa local y no ofrece recarga automática al editar. `dist:portable` ejecuta el build desktop y el empaquetado completo en orden. La salida final es `dist/Laboratorio-Electromagnetismo-Portable.exe`.
 
 No se debe configurar `DESKTOP_EXPORT` en el entorno de producción de Vercel. La rama y la configuración de producción de Vercel no se modifican al ejecutar estos comandos localmente.
 
@@ -45,15 +45,15 @@ El ejecutable de esta entrega no tiene firma digital. Windows SmartScreen o pol�
 ## Cómo validar la entrega
 
 1. Ejecutar `npm test`, `npm run lint`, `npm run build` y `npm run dist:portable`.
-2. Abrir el EXE en Windows y navegar desde la portada a los tres laboratorios. Probar enlaces, volver, atrás/adelante y recargar cada ruta.
+2. Abrir el EXE en Windows y navegar desde la portada a los cuatro laboratorios. Probar enlaces, volver, atrás/adelante y recargar cada ruta.
 3. En resistencia, variar material, longitud, diámetro, corriente y temperatura; revisar resultados, SVG y los tres gráficos.
 4. En campo magnético, variar carga, rapidez, campo, ángulo y signo; revisar dirección, vectores y gráfico.
 5. En movimiento circular, variar masa, carga, rapidez y campo; revisar radio, sentido, gráfico, reanudar, pausar y reiniciar.
-6. Cortar la conexión a Internet de forma controlada y repetir la navegación y los controles. Cerrar y volver a abrir el EXE.
+6. En Helmholtz, comprobar Canvas, cámara, worker, mapa, nube, sonda arrastrable, valores fuera del eje, gráfico, Helmholtz/Anti y CSV. Cortar la conexión a Internet de forma controlada y repetir la navegación y los controles. Cerrar y volver a abrir el EXE.
 7. Repetir desde otra carpeta y, si está disponible, desde un pendrive y desde un Windows x64 sin Node.js instalado.
 
-En la implementación se probó el EXE real con emulación de red offline de Chromium: las cuatro rutas, recarga, navegación cliente, controles representativos, gráficos y animación funcionaron sin solicitudes remotas observadas. Esto no sustituye una prueba en otra computadora, con adaptador de red desconectado ni desde un pendrive físico.
+La validación final del portable con cuatro laboratorios, incluyendo Helmholtz, se registra en el informe final de entrega. La emulación de red offline de Chromium permite deshabilitar Internet para la aplicación durante la prueba; no sustituye una prueba en otra computadora o desde un pendrive físico.
 
 ## Git y Vercel
 
-El trabajo desktop se desarrolla en `feature/desktop-offline`; `main` conserva la versión web. La configuración de Vercel no se cambia, y no hace falta desplegar el EXE. Los despliegues de producción visibles de `simu-physics` provienen de `main`, incluido el commit `e968301`; el ajuste de rama de producción del proyecto no pudo consultarse mediante la conexión y debe confirmarse en el panel. Las implementaciones física, React y las rutas se comparten. El repositorio ignora `out/`, `dist/`, `.next/` y los PDF locales.
+La entrega desktop se consolida en `offline/tp4`, conservando los cambios que antes estaban sin commit en `feature/desktop-offline`; `main` conserva la versión web. El TP4 compartido proviene de `feature/tp4-helmholtz`. La configuración de Vercel no se cambia, y no hace falta desplegar el EXE. Los despliegues de producción visibles de `simu-physics` provienen de `main`, incluido el commit `e968301`; el ajuste de rama de producción del proyecto no pudo consultarse mediante la conexión y debe confirmarse en el panel. El dominio verificado es `https://simu-physics.vercel.app`, todavía con la versión publicada anterior hasta autorizar push/deploy. Las implementaciones física, React y las rutas se comparten. El repositorio ignora `out/`, `dist/`, `entrega/`, `.next/` y los PDF locales.

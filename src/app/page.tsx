@@ -1,4 +1,4 @@
-import { ArrowRight, Atom, CircleDotDashed, MoveRight } from "lucide-react";
+import { ArrowRight, Atom, CircleDotDashed, Magnet, MoveRight } from "lucide-react";
 import Link from "next/link";
 
 const modules = [
@@ -26,6 +26,14 @@ const modules = [
     status: "Disponible",
     Icon: CircleDotDashed,
   },
+  {
+    number: "04",
+    title: "Bobinas de Helmholtz",
+    description: "Mapeá el campo en 3D con Biot-Savart. Mové la sonda y descubrí la región con variación menor al 1%.",
+    href: "/bobinas-helmholtz",
+    status: "Disponible",
+    Icon: Magnet,
+  },
 ];
 
 export default function Home() {
@@ -46,7 +54,7 @@ export default function Home() {
       <section className="module-section" aria-labelledby="modules-title">
         <div className="section-heading">
           <p>Recorrido de aprendizaje</p>
-          <h2 id="modules-title">Tres fenómenos, un mismo laboratorio</h2>
+          <h2 id="modules-title">Cuatro fenómenos, un mismo laboratorio</h2>
         </div>
         <div className="module-grid">
           {modules.map(({ number, title, description, href, status, Icon }, index) => (
