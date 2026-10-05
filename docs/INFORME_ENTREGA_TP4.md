@@ -4,7 +4,9 @@ Baltasar Barbaglia · Ingeniería Informática, UNSTA · Física II 2026.
 
 Verificado el 05/10/2026. Consigna: entrega 07/10/2026. Este informe actualiza el estado histórico de [INFORME_TP4.md](INFORME_TP4.md).
 
-**Estado final:** guía PDF terminada y revisada; paquete EXE + PDF + README y ZIP final comprobados. Web y portable contienen cuatro laboratorios. Push, deploy, subida y envío de correo siguen pendientes de autorización.
+**Actualización posterior al cierre local, 05/10/2026:** Baltasar confirmó que ya subió el paquete a Google Drive y envió personalmente el correo al profesor. También autorizó publicar `main` y todas las ramas locales existentes en `origin`. No se solicitó volver a subir archivos ni enviar otro correo. La URL de Drive no fue informada en este chat. Se mantienen separadas la rama web `main` y la rama Electron `offline/tp4`.
+
+Las secciones siguientes conservan el registro del cierre local previo a esa autorización: guía PDF terminada y revisada; paquete EXE + PDF + README y ZIP final comprobados; web y portable con cuatro laboratorios. Los pendientes de envío y subida indicados allí quedaron resueltos por el usuario; corresponde comprobar ahora la publicación Git y el deployment automático de Vercel.
 
 Antes de este cierre se comprobaron `git worktree list`, `git branch -a`, `git status` y `git log --oneline --decorate --graph --all`: `main` estaba en `8977d59` y `offline/tp4` en `e3ba24c`, ambos limpios, coherentes con este informe. Los commits `1de9fb5`, `172fffc` y `0b83d07` existen. El EXE conservaba el SHA-256 registrado. Las modificaciones de este cierre se limitan a documentación y archivos de entrega.
 

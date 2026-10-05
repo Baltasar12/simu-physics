@@ -1,5 +1,7 @@
 # Borrador de correo — entrega TP4
 
+**Estado actualizado, 05/10/2026:** Baltasar confirmó que ya envió personalmente el correo y subió el paquete a Google Drive. Se conserva a continuación el borrador original como registro; el enlace efectivamente enviado no fue compartido en este chat. No corresponde reenviar el correo ni repetir la subida. La publicación de `main` y las ramas locales fue autorizada después del envío.
+
 **TO:** nestor.leal@unsta.edu.ar
 
 **SUBJECT:** Física II – TP4 Bobinas de Helmholtz – Baltasar Barbaglia
