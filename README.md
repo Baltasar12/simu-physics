@@ -81,6 +81,8 @@ docs/             # teoría, exposición, arquitectura y validación
 - [Guía teórica TP4, manual, capturas y aplicaciones](docs/TP4_BOBINAS_HELMHOLTZ.md).
 - [Guía de exposición TP4 y demo de 5-7 minutos](docs/GUIA_EXPOSICION_TP4.md).
 - [Informe de implementación y validación TP4](docs/INFORME_TP4.md).
+- [Cierre de ramas, portable y paquete TP4](docs/INFORME_ENTREGA_TP4.md).
+- [Borrador de correo al profesor](docs/BORRADOR_EMAIL_TP4.md).
 - [Arquitectura](docs/ARQUITECTURA.md).
 - [Informe de implementación y validación](docs/INFORME_ETAPA_2.md).
 - [Roadmap](docs/ROADMAP.md).
